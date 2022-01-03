@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.2",
+    "dotenv": "^10.0.0",
     "gatsby": "^4.4.0",
     "gatsby-plugin-styled-components": "^5.4.0",
     "gatsby-source-contentful": "^7.2.0",
