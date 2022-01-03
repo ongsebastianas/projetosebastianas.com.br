@@ -1,7 +1,10 @@
+import { theme, PageColors, ITheme } from "./theme";
 import { breakpoints } from "./breakpoints";
-import { theme } from "./theme";
 
 export {
   breakpoints,
-  theme
+  theme,
+
+  PageColors,
+  ITheme
 }

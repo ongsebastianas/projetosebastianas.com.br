@@ -1,7 +1,9 @@
-type Colors = "pessego" | "vermelho" | "verde-claro" | "verde-escuro" | "cinza";
+export type PageColors = "pessego" | "vermelho" | "verde-claro" | "verde-escuro" | "cinza";
+export type ShadowElevation = "small";
 
-interface ITheme {
-  colors: { [color in Colors]: string }
+export interface ITheme {
+  colors: { [color in PageColors]: string },
+  shadows: { [elevation in ShadowElevation]: string }
 }
 
 export const theme: ITheme = {
@@ -11,5 +13,8 @@ export const theme: ITheme = {
     "verde-claro": "#628F6F",
     "verde-escuro": "#022601",
     "cinza": "#656565"
+  },
+  shadows: {
+    "small": "0px 2px 29px 1px rgba(0, 0, 0, 0.1)"
   }
 };

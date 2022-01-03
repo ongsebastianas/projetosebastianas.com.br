@@ -1,0 +1,23 @@
+import styled from "styled-components";
+import { IButtonProps } from "./types";
+
+const StyledButton = styled.button<IButtonProps>`
+  height: 40px;
+
+  background-color: ${props => props.variant == "contained" ? props.theme.colors[props.color] : "transparent"};
+  border: ${props => props.variant == "transparent" ? "none" : `1px solid ${props.theme.colors[props.color]}`};
+  border-radius: 50px;
+  padding: 10px 30px;
+  
+  cursor: pointer;
+
+  color: ${props => props.variant == "contained" ? "white" : props.theme.colors[props.color]};
+  font-weight: 700;
+`;
+
+StyledButton.defaultProps = {
+  color: "vermelho",
+  variant: "contained"
+}
+
+export default StyledButton;
