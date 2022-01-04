@@ -1,4 +1,5 @@
 import React from "react";
+import { IconContext } from "react-icons";
 import { ThemeProvider } from "styled-components";
 import { Helmet } from "react-helmet";
 
@@ -8,22 +9,24 @@ import { MainFooter, MainHeader } from "../elements";
 
 const MainLayout: React.FC = ({ children }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <Helmet>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;600&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
-      </Helmet>
-      <GlobalStyle />
+    <IconContext.Provider value={{ className: "icon" }}>
+      <ThemeProvider theme={theme}>
+        <Helmet>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;600&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+        </Helmet>
+        <GlobalStyle />
 
-      <MainHeader />
+        <MainHeader />
 
-      <main>
-        {children}
-      </main>
+        <main>
+          {children}
+        </main>
 
-      <MainFooter />
-    </ThemeProvider>
+        <MainFooter />
+      </ThemeProvider>
+    </IconContext.Provider>
   )
 }
 
