@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { IButtonProps } from "./types";
 
 const StyledButton = styled.button<IButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+
   height: 40px;
   width: ${props => props.fullWidth ? "100%" : "auto"};
 
@@ -14,6 +18,10 @@ const StyledButton = styled.button<IButtonProps>`
 
   color: ${props => props.variant == "contained" ? "white" : props.theme.colors[props.color]};
   font-weight: 700;
+
+  & > .icon {
+    margin-right: 0.5rem;
+  }
 `;
 
 StyledButton.defaultProps = {

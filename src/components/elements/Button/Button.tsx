@@ -7,7 +7,8 @@ const Button: React.FC<IButtonProps> = ({
   children,
   variant,
   color,
-  fullWidth
+  fullWidth,
+  icon
 }) => {
   return (
     <StyledButton
@@ -15,6 +16,7 @@ const Button: React.FC<IButtonProps> = ({
       color={color}
       fullWidth={fullWidth}
     >
+      { icon }
       { children }
     </StyledButton>
   )
