@@ -1,4 +1,6 @@
 import React from "react";
+import { FaLock } from "react-icons/fa";
+
 import { Logo, NavBar, NavBarItem, UppercasedButton } from "..";
 import StyledMainHeader from "./StyledMainHeader";
 
@@ -14,7 +16,12 @@ const MainHeader: React.FC = () => {
           <NavBarItem>Depoimentos</NavBarItem>
         </NavBar>
         
-        <UppercasedButton variant="transparent">Área de Membros</UppercasedButton>
+        <UppercasedButton 
+          icon={<FaLock />} 
+          variant="transparent"
+        >
+            Área de Membros
+        </UppercasedButton>
     </StyledMainHeader>
   )
 }

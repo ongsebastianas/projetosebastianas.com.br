@@ -1,60 +1,79 @@
-import React from "react";
-import styled from "styled-components";
-import { FaWhatsapp } from "react-icons/fa";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { useCallback, useMemo } from "react";
+import { useEffect } from "react";
+import { IoLogoWhatsapp } from "react-icons/io";
+import * as Icons from "react-icons/fa";
 
-import StyledMainFooter from "./StyledMainFooter";
-import { Button, Link, Logo, NavBar, NavBarItem, Section } from "..";
-
-const FooterSection = styled(Section)`
-  flex: 1;
-  margin-bottom: 2rem;
-`;
-
-const FooterLink = styled(Link)`
-  color: white;
-  font-size: 1.5rem;
-  margin-top: 0.5rem;
-`;
-
-const FooterNavBarItem = styled(NavBarItem)`
-  color: ${props => props.theme.colors["verde-claro"]};
-  opacity: 0.9;
-  font-weight: 500;
-  margin-bottom: .75rem;
-`;
+import { Button, Icon, Logo, NavBar } from "..";
+import { FooterCopyrightNotice, FooterIconAnchor, FooterLink, FooterNavBarItem, FooterSection, StyledMainFooter } from "./MainFooter.styled";
 
 const MainFooter = () => {
+  const { allContentfulRedesSocial: { nodes: socialNetworksList } } = useStaticQuery(graphql`
+    query MyQuery {
+      allContentfulRedesSocial {
+        nodes {
+          nomeRedeSocial
+          link
+          icone
+        }
+      }
+    }
+  `);
+
+  useEffect(() => {
+    console.log(socialNetworksList);
+  }, [socialNetworksList])
+
+  const getCurrentYear = () => new Date().getFullYear();
+
   return (
     <StyledMainFooter>
-      <FooterSection>
-        <Logo logoColor="white" />
+      <FooterSection isRow>
+        <FooterSection style={{ padding: "" }}>
+          <Logo logoColor="white" />
+        </FooterSection>
+
+        <FooterSection>
+          <NavBar>
+            <FooterNavBarItem>Página Inicial</FooterNavBarItem>
+            <FooterNavBarItem>Blog</FooterNavBarItem>
+            <FooterNavBarItem>Termos e privacidade</FooterNavBarItem>
+          </NavBar>
+        </FooterSection>
+
+        <FooterSection title="Canal de atendimento">
+          <FooterLink href="https://api.whatsapp.com/send?phone=5547900000000" icon={<IoLogoWhatsapp />}>
+            +55 47 90000-0000
+          </FooterLink>
+        </FooterSection>
+
+        <FooterSection>
+          <div>
+            <FooterSection>
+              <Button>Tornar-se membro</Button>
+            </FooterSection>
+
+            <FooterSection title="Siga nas redes sociais:">
+              <div style={{ marginTop: "0.5rem" }}>
+                {
+                  socialNetworksList.map(socialNetwork => (
+                    <FooterIconAnchor title={socialNetwork.nomeRedeSocial} href={socialNetwork.link}>
+                      <Icon 
+                        icon={socialNetwork.icone}
+                        color="white" 
+                      />
+                    </FooterIconAnchor>
+                  ))
+                }
+              </div>
+            </FooterSection>
+          </div>
+        </FooterSection>
       </FooterSection>
 
-      <FooterSection>
-        <NavBar>
-          <FooterNavBarItem>Página Inicial</FooterNavBarItem>
-          <FooterNavBarItem>Blog</FooterNavBarItem>
-          <FooterNavBarItem>Termos e privacidade</FooterNavBarItem>
-        </NavBar>
+      <FooterSection noMargin centerContent>
+        <FooterCopyrightNotice>{getCurrentYear()}. Todos os direitos reservados.</FooterCopyrightNotice>
       </FooterSection>
-
-      <FooterSection title="Canal de atendimento">
-        <FooterLink href="https://api.whatsapp.com/send?phone=5547900000000" icon={<FaWhatsapp />}>
-          +55 47 90000-0000
-        </FooterLink>
-      </FooterSection>
-
-      <FooterSection>
-        <div>
-          <FooterSection>
-            <Button>Tornar-se membro</Button>
-          </FooterSection>
-
-          <FooterSection title="Siga nas redes sociais:">
-
-          </FooterSection>
-        </div>
-      </FooterSection> 
     </StyledMainFooter>
   )
 }
