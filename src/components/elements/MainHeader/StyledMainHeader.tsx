@@ -8,7 +8,7 @@ const StyledMainHeader = styled.header`
 
   height: 93px;
   width: 100vw;
-  padding: 10px 7.5rem;
+  padding: 10px 3rem;
   position: relative;
   top: 0;
   box-shadow: ${props => props.theme.shadows.small};
