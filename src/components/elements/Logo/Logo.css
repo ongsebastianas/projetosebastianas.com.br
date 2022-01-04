@@ -1,0 +1,12 @@
+.logo-container {
+  display: flex;
+  height: 100%;
+}
+
+.logo.white {
+  filter: brightness(0) invert(1);
+}
+
+.logo.black {
+  filter: brightness(0);
+}

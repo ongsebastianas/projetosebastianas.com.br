@@ -1,9 +1,9 @@
-import React from "react";
+import React, { HTMLProps } from "react";
 import StyledNavBarItem from "./StyledNavBarItem";
 
-const NavBarItem: React.FC = ({ children }) => {
+const NavBarItem: React.FC<HTMLProps<HTMLElement>> = ({ children, className }) => {
   return (
-    <StyledNavBarItem>
+    <StyledNavBarItem className={className}>
       { children }
     </StyledNavBarItem>
   )

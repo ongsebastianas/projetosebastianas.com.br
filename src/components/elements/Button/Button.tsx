@@ -5,12 +5,16 @@ import { IButtonProps } from "./types";
 
 const Button: React.FC<IButtonProps> = ({
   children,
-  className,
   variant,
   color,
+  fullWidth
 }) => {
   return (
-    <StyledButton className={className} variant={variant} color={color}>
+    <StyledButton
+      variant={variant}
+      color={color}
+      fullWidth={fullWidth}
+    >
       { children }
     </StyledButton>
   )

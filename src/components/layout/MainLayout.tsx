@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 import GlobalStyle from "../../globalStyles";
 import { theme } from "../../constants";
-import { MainHeader } from "../elements";
+import { MainFooter, MainHeader } from "../elements";
 
 const MainLayout: React.FC = ({ children }) => {
   return (
@@ -21,6 +21,8 @@ const MainLayout: React.FC = ({ children }) => {
       <main>
         {children}
       </main>
+
+      <MainFooter />
     </ThemeProvider>
   )
 }

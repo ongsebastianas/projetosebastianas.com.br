@@ -3,6 +3,7 @@ import { IButtonProps } from "./types";
 
 const StyledButton = styled.button<IButtonProps>`
   height: 40px;
+  width: ${props => props.fullWidth ? "100%" : "auto"};
 
   background-color: ${props => props.variant == "contained" ? props.theme.colors[props.color] : "transparent"};
   border: ${props => props.variant == "transparent" ? "none" : `1px solid ${props.theme.colors[props.color]}`};

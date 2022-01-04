@@ -6,4 +6,5 @@ export type IButtonVariant = "contained" | "outlined" | "transparent";
 export interface IButtonProps extends HTMLProps<HTMLButtonElement> {
   variant?: IButtonVariant;
   color?: PageColors;
+  fullWidth?: boolean;
 }

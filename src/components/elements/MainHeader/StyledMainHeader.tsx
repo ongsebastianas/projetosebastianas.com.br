@@ -6,7 +6,7 @@ const StyledMainHeader = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  height: 10vh;
+  height: 93px;
   width: 100vw;
   padding: 10px 7.5rem;
   position: relative;

@@ -5,7 +5,7 @@ import StyledMainHeader from "./StyledMainHeader";
 const MainHeader: React.FC = () => {
   return (
     <StyledMainHeader>
-        <Logo logoMode="original" />
+        <Logo logoColor="original" />
 
         <NavBar inline>
           <NavBarItem>Quem somos</NavBarItem>

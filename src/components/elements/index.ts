@@ -1,15 +1,19 @@
-import MainHeader from "./MainHeader/MainHeader";
+import Logo from "./Logo/Logo";
+import Section from "./Section/Section";
+import Button from "./Button/Button";
 import UppercasedButton from "./Button/UpppercasedButton";
 import NavBarItem from "./NavBarItem/NavBarItem";
 import NavBar from "./NavBar/NavBar";
-import Button from "./Button/Button";
-import Logo from "./Logo/Logo";
+import MainHeader from "./MainHeader/MainHeader";
+import MainFooter from "./MainFooter/MainFooter";
 
 export {
-  MainHeader,
-  UppercasedButton,
+  NavBar,
   NavBarItem,
   Button,
-  NavBar,
-  Logo
+  UppercasedButton,
+  Section,
+  Logo,
+  MainHeader,
+  MainFooter,
 }
