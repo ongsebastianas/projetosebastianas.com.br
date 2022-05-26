@@ -43,7 +43,7 @@ const MainLayout = ({ children }: Props) => {
         <Flex hidden={isMobile} alignItems={"center"} gap={"2rem"}>
           {
             menuItems.map(item => (
-              <Link href={item.href ?? ""}>{ item.text }</Link>
+              <Link key={item.text} href={item.href ?? ""}>{ item.text }</Link>
             ))
           }
         </Flex>
@@ -55,7 +55,7 @@ const MainLayout = ({ children }: Props) => {
             <MenuList>
               {
                 menuItems.map(item => (
-                  <MenuItem>{ item.text }</MenuItem>
+                  <MenuItem key={item.text}>{ item.text }</MenuItem>
                 ))
               }
             </MenuList>

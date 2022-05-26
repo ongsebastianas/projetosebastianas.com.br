@@ -48,6 +48,7 @@ const Home: NextPage = () => {
 
       <Flex flex={1} position={"relative"} minHeight={"10rem"}>
         <Image 
+          alt={"Ilustração da página principal"}
           layout={"fill"}
           src={"/assets/images/girls.svg"}
         />
