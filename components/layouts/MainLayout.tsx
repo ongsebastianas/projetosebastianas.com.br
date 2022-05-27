@@ -2,6 +2,8 @@ import { Box, chakra, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, us
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import styled from "styled-components";
 import { Logo, Link } from "../elements";
+import { useRouter } from "next/router";
+import { device } from "theme/breakpoints";
 
 const Header = styled.header`
   padding: 1rem 3rem;
@@ -12,7 +14,12 @@ const Header = styled.header`
 `;
 
 const Main = styled.main`
-  padding: 1rem 3rem;
+  padding: 1rem 2rem;
+  position: relative;
+
+  @media ${device.laptop} {
+    padding: 1rem 5rem;
+  }
 `;
 
 type Props = {
@@ -21,29 +28,32 @@ type Props = {
 
 type MenuItem = {
   text: string;
-  href?: string;
+  href: string;
 }
 
 const menuItems: MenuItem[] = [{
   text: "Quem somos",
+  href: "/quem-somos"
 }, {
-  text: "Blog"
+  text: "Blog",
+  href: "/blog",
 }]
 
 const MainLayout = ({ children }: Props) => {
   const isMobile = useBreakpointValue({ base: true, md: false });
-  
+  const router = useRouter();
+
   return (
     <Box>
       <Header>
         <Flex position={"relative"} height={"2.5rem"} flex={1}>
-          <Logo />
+          <Logo onClick={() => router.push("/")} />
         </Flex>
 
         <Flex hidden={isMobile} alignItems={"center"} gap={"2rem"}>
           {
             menuItems.map(item => (
-              <Link key={item.text} href={item.href ?? ""}>{ item.text }</Link>
+              <Link key={item.text} href={item.href}>{ item.text }</Link>
             ))
           }
         </Flex>
@@ -55,7 +65,7 @@ const MainLayout = ({ children }: Props) => {
             <MenuList>
               {
                 menuItems.map(item => (
-                  <MenuItem key={item.text}>{ item.text }</MenuItem>
+                  <MenuItem onClick={() => router.push(item.href)} key={item.text}>{ item.text }</MenuItem>
                 ))
               }
             </MenuList>

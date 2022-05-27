@@ -36,8 +36,8 @@ const Home: NextPage = () => {
         flex={1} 
         direction={"column"} 
         gap={"3rem"} 
-        alignItems={["center", "flex-start"]} 
-        textAlign={["center", "start"]}
+        alignItems={{ base: "center", md: "flex-start" }} 
+        textAlign={{ base: "center", md: "start" }}
       >
         <Title>Acreditar em si mesma, <wbr /> faz toda a diferença.</Title>
         <Subtitle>Sebastianas - Empreendedorismo raiz foi idealizado para contribuir de forma social com a mudança da realidade de centenas de mulheres de baixa renda através do fomento do empreendedorismo.</Subtitle>
