@@ -4,7 +4,7 @@ import { FormLayout } from "@components/layouts";
 import Image from "next/image";
 import { useState } from "react";
 import { SubmitErrorHandler, SubmitHandler, useController, useForm, UseFormReturn } from "react-hook-form";
-import { NextPageWithLayout } from "./types";
+import { NextPageWithLayout } from "../types";
 
 type InteresseFormData = {
   fullName: string;
