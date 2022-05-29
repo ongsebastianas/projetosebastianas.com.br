@@ -1,9 +1,10 @@
-import { Box, Button, Center, Flex } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import { default as NextLink } from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { device } from 'theme/breakpoints';
+import { LinkButton } from '@components/elements';
 
 const Title = styled.h1`
   font-weight: 500;
@@ -41,9 +42,10 @@ const Home: NextPage = () => {
       >
         <Title>Acreditar em si mesma, <wbr /> faz toda a diferença.</Title>
         <Subtitle>Sebastianas - Empreendedorismo raiz foi idealizado para contribuir de forma social com a mudança da realidade de centenas de mulheres de baixa renda através do fomento do empreendedorismo.</Subtitle>
-        <NextLink href="https://app.projetosebastianas.com.br">
-          <Button paddingX={"3rem"}>Quero participar</Button>
-        </NextLink>
+        
+        <LinkButton href={"/interesse"} buttonProps={{ paddingX: "3rem" }}>
+          Quero participar
+        </LinkButton>
       </Flex>
 
       <Flex flex={1} position={"relative"} minHeight={"10rem"}>
