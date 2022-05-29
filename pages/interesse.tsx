@@ -150,7 +150,7 @@ const GenderIncomeStep = (props: FormStepComponentProps) => {
               const radio = getIncomeRangeRadioProps({ value: range });
 
               return (
-                <Radio {...radio}>{range}</Radio>
+                <Radio key={range} {...radio}>{range}</Radio>
               )
             })
           }
