@@ -209,6 +209,7 @@ const Interesse: NextPageWithLayout = () => {
               <Center height={"12rem"} position={"relative"}>
                 <Image
                   layout={"fill"}
+                  alt={"Ilustração"}
                   src={"/assets/images/thinkingGirl.svg"}
                 />
               </Center>
@@ -230,8 +231,8 @@ const Interesse: NextPageWithLayout = () => {
               <Tabs index={formStep}>
                 <TabPanels>
                   {
-                    formSteps.map(({ component: StepComponent }) => (
-                      <TabPanel padding={"none"} margin={"none"} display={"flex"} flexDir={"column"} gap={"1rem"}>
+                    formSteps.map(({ component: StepComponent }, index) => (
+                      <TabPanel key={"panel-" + index} padding={"none"} margin={"none"} display={"flex"} flexDir={"column"} gap={"1rem"}>
                         <StepComponent form={form} />
                       </TabPanel>
                     ))
