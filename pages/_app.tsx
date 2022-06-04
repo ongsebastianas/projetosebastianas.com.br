@@ -4,6 +4,8 @@ import theme from '../theme';
 import { MainLayout } from "../components/layouts";
 import { NextPageWithLayout } from '../types';
 
+import "../global.css";
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
