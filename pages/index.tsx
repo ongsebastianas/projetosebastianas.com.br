@@ -25,7 +25,7 @@ const IntroductionSectionWrapper = chakra(Flex, {
 
 const OferecimentosSectionContent = chakra(Flex, {
   baseStyle: {
-    marginTop: "20vh",
+    marginTop: "8rem",
     flexDirection: "column",
     gap: "4rem"
   }

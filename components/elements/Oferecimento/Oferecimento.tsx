@@ -4,7 +4,7 @@ const Oferecimento = chakra("div", {
   baseStyle: {
     display: "flex",
     flexDirection: { base: "column", lg: "row" },
-    gap: "2rem"
+    gap: { base: "1rem", lg: "2rem"}
   }
 });
 
@@ -29,7 +29,7 @@ const OferecimentoTitle = chakra("h3", {
     fontWeight: "700",
     fontSize: "1.5rem",
     lineHeight: "100%",
-    marginBottom: "1.5rem"
+    marginBottom: { base: "0.5rem", lg: "1.5rem" }
   }
 });
 
@@ -38,8 +38,8 @@ const OferecimentoDescription = chakra("p", {
     color: "black",
     fontFamily: "'Alegreya Sans', sans-serif",
     fontWeight: "400",
-    fontSize: "1.5rem",
-    lineHeight: "32px",
+    fontSize: { base: "1.25rem", lg: "1.5rem"},
+    lineHeight: { base: "1.75rem", lg: "32px" },
     marginRight: { base: "0", lg: "15vw" },
     textAlign: "justify"
   }
