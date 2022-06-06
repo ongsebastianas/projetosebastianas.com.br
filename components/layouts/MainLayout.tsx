@@ -5,6 +5,7 @@ import { MainHeader } from "../elements";
 const Main = styled.main`
   display: flex;  
   flex-direction: column;
+  position: relative;
 `;
 
 type Props = {

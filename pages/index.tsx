@@ -1,14 +1,14 @@
-import { Box, chakra, Flex, Icon } from '@chakra-ui/react';
+import { Box, Center, chakra, Flex, Icon } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { LinkButton, Oferecimento, OferecimentoAside, OferecimentoContentWrapper, OferecimentoDescription, OferecimentoTitle, Section, SectionSubtitle, SectionTitle } from '@components/elements';
+import { Card, CardDate, CardDescription, CardImage, CardTag, CardText, CardTitle, LinkButton, Oferecimento, OferecimentoAside, OferecimentoContentWrapper, OferecimentoDescription, OferecimentoTitle, Section, SectionSubtitle, SectionTitle, Link, ScrollSnapWrapper } from '@components/elements';
 import React from 'react';
 import { GroupIcon, HandWithHeartIcon, LightbulbIcon } from '@components/icons';
 
 const IntroductionSection = chakra(Section, {
   baseStyle: {
     paddingY: "5rem !important",
-    flexDirection: { base: "column-reverse", lg: "row" },
+    flexDirection: { base: "column-reverse !important", lg: "row !important" },
     gap: "2rem"
   }
 });
@@ -37,6 +37,45 @@ const OferecimentosSection = chakra(Section, {
     display: "flex",
     flexDirection: "column",
     paddingY: "4rem !important"
+  }
+});
+
+const EventosSection = chakra(Section, {
+  baseStyle: {
+    flexDirection: "column !important",
+    gap: "2.5rem"
+  }
+});
+
+const EventoCard = chakra(Card, {
+  baseStyle: {
+    flex: { base: "0 0 100%", lg: "auto" },
+    minWidth: { base: "auto", lg: "18rem" }
+  }
+});
+
+const ArtigoCard = chakra(Card, {
+  baseStyle: {
+    flex: { base: "0 0 100%", lg: "auto" }
+  }
+});
+
+const ArtigosSection = chakra(Section, {
+  baseStyle: {
+    flexDirection: "column !important",
+    gap: "2.5rem"
+  }
+});
+
+const ArtigosSectionFooter = chakra(Flex, {
+  baseStyle: {
+    justifyContent: "flex-end"
+  }
+});
+
+const ArtigosSectionAnnouncement = chakra(Link, {
+  baseStyle: {
+    color: "brand.500"
   }
 });
 
@@ -84,8 +123,8 @@ const Home: NextPage = () => {
               </OferecimentoTitle>
 
               <OferecimentoDescription marginRight={{ base: "0", lg: "30vw" }}>
-                Workshops temáticos online e presenciais, voltados ao público feminino, 
-                desenvolvidos de acordo com as competências a serem trabalhadas. 
+                Workshops temáticos online e presenciais, voltados ao público feminino,
+                desenvolvidos de acordo com as competências a serem trabalhadas.
               </OferecimentoDescription>
             </OferecimentoContentWrapper>
           </Oferecimento>
@@ -121,14 +160,159 @@ const Home: NextPage = () => {
               <OferecimentoDescription>
                 Baseadas em metodologias que refletem no comportamento cognitivo das pessoas e que
                 provocam um estado de contemplação para tomada de decisão. O público é conduzido à
-                autorreflexão a um olhar interior, resultando em descobertas e novos pontos de vista. 
+                autorreflexão a um olhar interior, resultando em descobertas e novos pontos de vista.
               </OferecimentoDescription>
             </OferecimentoContentWrapper>
           </Oferecimento>
         </OferecimentosSectionContent>
       </OferecimentosSection>
-    </React.Fragment>
 
+      <EventosSection hasRepeatingBackground>
+        <Center width={"100%"}>
+          <SectionTitle sansSerif variant={"outlined"} color={"white"}>Próximos eventos</SectionTitle>
+        </Center>
+
+        <ScrollSnapWrapper display={"flex"} gap={"2rem"}>
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+
+
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+
+          <EventoCard>
+            <CardImage src={""} objectFit={"contain"} />
+
+            <CardText color={"white"}>
+              <CardDate>03 de junho de 2022</CardDate>
+              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
+            </CardText>
+          </EventoCard>
+        </ScrollSnapWrapper>
+      </EventosSection>
+
+      <ArtigosSection>
+        <Box alignSelf={"flex-start"}>
+          <SectionTitle titleSublinePosition={"start"} variant={"outlined"}>Artigos</SectionTitle>
+        </Box>
+
+        <ScrollSnapWrapper hideArrowsOnDesktop display={"flex"} gap={"2rem"}>
+          <ArtigoCard>
+            <CardImage src={""} />
+
+            <CardTag>Liderança</CardTag>
+
+            <CardText>
+              <CardDate>10 de janeiro de 2022</CardDate>
+              <CardTitle>Exemplo de card para post no blog</CardTitle>
+            </CardText>
+          </ArtigoCard>
+
+          <ArtigoCard>
+            <CardImage src={""} />
+
+            <CardTag>Liderança</CardTag>
+
+            <CardText>
+              <CardDate>10 de janeiro de 2022</CardDate>
+              <CardTitle>Exemplo de card para post no blog</CardTitle>
+            </CardText>
+          </ArtigoCard>
+
+          <ArtigoCard>
+            <CardImage src={""} />
+
+            <CardTag>Liderança</CardTag>
+
+            <CardText>
+              <CardDate>10 de janeiro de 2022</CardDate>
+              <CardTitle>Exemplo de card para post no blog</CardTitle>
+            </CardText>
+          </ArtigoCard>
+
+          <ArtigoCard>
+            <CardImage src={""} />
+
+            <CardTag>Liderança</CardTag>
+
+            <CardText>
+              <CardDate>10 de janeiro de 2022</CardDate>
+              <CardTitle>Exemplo de card para post no blog</CardTitle>
+            </CardText>
+          </ArtigoCard>
+        </ScrollSnapWrapper>
+
+        <ArtigosSectionFooter>
+          <ArtigosSectionAnnouncement styleProps={{ color: "brand.500", textTransform: "uppercase", letterSpacing: "0.15rem" }} href={"/blog"}>Ver mais artigos</ArtigosSectionAnnouncement>
+        </ArtigosSectionFooter>
+      </ArtigosSection>
+    </React.Fragment>
   )
 }
 

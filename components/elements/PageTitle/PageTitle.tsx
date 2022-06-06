@@ -7,7 +7,7 @@ const PageTitle = chakra('div', {
     textAlign: "center",
     backgroundColor: "brand.500",
     width: "100%",
-    position: "absolute",
+    position: "relative",
     top: "0",
     left: "0",
     color: "white",

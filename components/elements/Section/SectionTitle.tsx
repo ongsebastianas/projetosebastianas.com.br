@@ -12,11 +12,15 @@ import styled, { css } from "styled-components";
 //   }
 // });
 
-type SectionTitleVariant = "contained" | "ghost";
+type SectionTitleVariant = "contained" | "ghost" | "outlined";
+type TitleSublinePosition = "center" | "start";
+type Color = "black" | "orange" | "white";
 
 type SectionTitleProps = {
   sansSerif?: boolean;
-  variant?: SectionTitleVariant
+  variant?: SectionTitleVariant;
+  titleSublinePosition?: TitleSublinePosition;
+  color?: Color;
 }
 
 const SectionTitle = styled.h2<SectionTitleProps>`
@@ -25,7 +29,30 @@ const SectionTitle = styled.h2<SectionTitleProps>`
   font-family: ${props => props.sansSerif ? "'Alegreya Sans', sans-serif" : "'Alegreya', sans-serif"};
   line-height: 100%;
   font-size: 2.5rem;
-  color: black;
+  color: ${props => props.color};
+
+  ${props => props.variant === "outlined" && css<SectionTitleProps>`
+    margin-bottom: 1rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      
+      ${({ titleSublinePosition = "center" }) => titleSublinePosition === "center" ? (css`
+        // Centraliza o outline:
+        left: 40%;
+        width: 20%;
+      `) : (css`
+        left: 0%;
+        width: 40%;
+      `)}
+
+      height: 5px;
+      border-radius: 50px;
+      background-color: rgba(242, 147, 92, 1);
+    }
+  `}
 
   ${props => props.variant === "contained" && `
     position: absolute !important;

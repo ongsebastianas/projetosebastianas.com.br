@@ -7,6 +7,7 @@ import Link from "./Link/Link";
 import Section from "./Section/Section";
 import SectionTitle from "./Section/SectionTitle";
 import SectionSubtitle from "./Section/SectionSubtitle";
+import ScrollSnapWrapper from "./ScrollSnapWrapper/ScrollSnapWrapper";
 import { 
   Oferecimento, 
   OferecimentoAside, 
@@ -14,6 +15,15 @@ import {
   OferecimentoTitle,
   OferecimentoContentWrapper
 } from "./Oferecimento/Oferecimento";
+import {
+  Card,
+  CardImage,
+  CardDescription,
+  CardTag,
+  CardText,
+  CardTitle,
+  CardDate
+} from "./Card/Card";
 
 export {
   RadioButton,
@@ -25,9 +35,17 @@ export {
   Section,
   SectionTitle,
   SectionSubtitle,
+  ScrollSnapWrapper,
   Oferecimento,
   OferecimentoAside,
   OferecimentoDescription,
   OferecimentoTitle,
-  OferecimentoContentWrapper
+  OferecimentoContentWrapper,
+  Card,
+  CardImage,
+  CardDescription,
+  CardTag,
+  CardText,
+  CardTitle,
+  CardDate
 }
