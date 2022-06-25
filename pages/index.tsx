@@ -1,9 +1,12 @@
-import { Box, Center, chakra, Flex, Icon } from '@chakra-ui/react';
-import type { NextPage } from 'next';
-import Image from 'next/image';
-import { Card, CardDate, CardDescription, CardImage, CardTag, CardText, CardTitle, LinkButton, Oferecimento, OferecimentoAside, OferecimentoContentWrapper, OferecimentoDescription, OferecimentoTitle, Section, SectionSubtitle, SectionTitle, Link, ScrollSnapWrapper } from '@components/elements';
 import React from 'react';
+import Image from 'next/image';
+import { default as NextLink } from 'next/link';
+import { Box, Center, chakra, Flex, Icon } from '@chakra-ui/react';
+import type { GetStaticProps, NextPage } from 'next';
+import { Card, CardDate, CardDescription, CardImage, CardTag, CardText, CardTitle, LinkButton, Oferecimento, OferecimentoAside, OferecimentoContentWrapper, OferecimentoDescription, OferecimentoTitle, Section, SectionSubtitle, SectionTitle, Link, ScrollSnapWrapper } from '@components/elements';
 import { GroupIcon, HandWithHeartIcon, LightbulbIcon } from '@components/icons';
+import { Post } from 'models/Post';
+import { Author } from 'models/Author';
 
 const IntroductionSection = chakra(Section, {
   baseStyle: {
@@ -56,7 +59,8 @@ const EventoCard = chakra(Card, {
 
 const ArtigoCard = chakra(Card, {
   baseStyle: {
-    flex: { base: "0 0 100%", lg: "auto" }
+    flex: { base: "0 0 100%", lg: "auto" },
+    minWidth: { base: "auto", lg: "18rem" }
   }
 });
 
@@ -79,7 +83,9 @@ const ArtigosSectionAnnouncement = chakra(Link, {
   }
 });
 
-const Home: NextPage = () => {
+const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
+  const dateFormatter = new Intl.DateTimeFormat("pt-BR", { dateStyle: 'long' })
+
   return (
     <React.Fragment>
       <IntroductionSection>
@@ -262,50 +268,23 @@ const Home: NextPage = () => {
           <SectionTitle titleSublinePosition={"start"} variant={"outlined"}>Artigos</SectionTitle>
         </Box>
 
-        <ScrollSnapWrapper hideArrowsOnDesktop display={"flex"} gap={"2rem"}>
-          <ArtigoCard>
-            <CardImage src={""} />
+        <ScrollSnapWrapper display={"flex"} gap={"2rem"}>
+          {
+            posts.map(post => (
+              <NextLink key={post.slug} href={"/blog/" + post.slug}>
+                <ArtigoCard cursor={"pointer"}>
+                  <CardImage src={""} />
 
-            <CardTag>Liderança</CardTag>
+                  <CardTag>AAAA</CardTag>
 
-            <CardText>
-              <CardDate>10 de janeiro de 2022</CardDate>
-              <CardTitle>Exemplo de card para post no blog</CardTitle>
-            </CardText>
-          </ArtigoCard>
-
-          <ArtigoCard>
-            <CardImage src={""} />
-
-            <CardTag>Liderança</CardTag>
-
-            <CardText>
-              <CardDate>10 de janeiro de 2022</CardDate>
-              <CardTitle>Exemplo de card para post no blog</CardTitle>
-            </CardText>
-          </ArtigoCard>
-
-          <ArtigoCard>
-            <CardImage src={""} />
-
-            <CardTag>Liderança</CardTag>
-
-            <CardText>
-              <CardDate>10 de janeiro de 2022</CardDate>
-              <CardTitle>Exemplo de card para post no blog</CardTitle>
-            </CardText>
-          </ArtigoCard>
-
-          <ArtigoCard>
-            <CardImage src={""} />
-
-            <CardTag>Liderança</CardTag>
-
-            <CardText>
-              <CardDate>10 de janeiro de 2022</CardDate>
-              <CardTitle>Exemplo de card para post no blog</CardTitle>
-            </CardText>
-          </ArtigoCard>
+                  <CardText>
+                    <CardDate>{ dateFormatter.format(new Date(post.date)) }</CardDate>
+                    <CardTitle>{ post.title.rendered }</CardTitle>
+                  </CardText>
+                </ArtigoCard>
+              </NextLink>
+            ))
+          }
         </ScrollSnapWrapper>
 
         <ArtigosSectionFooter>
@@ -314,6 +293,33 @@ const Home: NextPage = () => {
       </ArtigosSection>
     </React.Fragment>
   )
+}
+
+export const getStaticProps: GetStaticProps<{ posts: Post[] }> = async () => {
+  const cachedAuthors: Record<string, Author> = {}
+  const fetchAuthor = async (author: string) => {
+    if (cachedAuthors[author]) return cachedAuthors[author]
+
+    const res = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/users/" + author)
+    const authorJson: Author = await res.json()
+    cachedAuthors[author] = authorJson
+
+    return authorJson
+  }
+  
+  const res = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/posts/")
+  const posts: Post[] = await res.json()
+
+  for (const post of posts) {
+    const authors: Author = await fetchAuthor((post.author as unknown) as string)
+    post.author = authors
+  }
+
+  return {
+    props: {
+      posts
+    }
+  }
 }
 
 export default Home
