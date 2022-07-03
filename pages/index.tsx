@@ -7,6 +7,7 @@ import { Card, CardDate, CardDescription, CardImage, CardTag, CardText, CardTitl
 import { GroupIcon, HandWithHeartIcon, LightbulbIcon } from '@components/icons';
 import { Post } from 'models/Post';
 import { Author } from 'models/Author';
+import { Attachment } from 'models/Attachment';
 
 const IntroductionSection = chakra(Section, {
   baseStyle: {
@@ -273,7 +274,7 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
             posts.map(post => (
               <NextLink key={post.slug} href={"/blog/" + post.slug}>
                 <ArtigoCard cursor={"pointer"}>
-                  <CardImage src={""} />
+                  <CardImage src={post._embedded['wp:featuredmedia'][0].source_url} />
 
                   <CardTag>AAAA</CardTag>
 
@@ -306,8 +307,14 @@ export const getStaticProps: GetStaticProps<{ posts: Post[] }> = async () => {
 
     return authorJson
   }
+
+  const fetchImages = async (link: string) => {
+    const res = await fetch(link)
+
+    return res.json()
+  }
   
-  const res = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/posts/")
+  const res = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/posts/?_embed")
   const posts: Post[] = await res.json()
 
   for (const post of posts) {

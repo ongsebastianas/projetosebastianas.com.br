@@ -1,5 +1,6 @@
+import { Attachment } from "./Attachment"
 import { Author } from "./Author"
-import { Guid, RenderedProp } from "./commons"
+import { Guid, HrefProp, RenderedProp } from "./commons"
 
 export type PostStatus = "publish"
 export type CommentStatus = "closed"
@@ -26,4 +27,13 @@ export type Post = {
   comment_status: CommentStatus,
   categories: number[],
   tags: number[],
+  _links: {
+    "wp:attachment": HrefProp[]
+  },
+  _images: Attachment[],
+  _embedded: {
+    "wp:featuredmedia": {
+      source_url: string
+    }[],
+  }
 }

@@ -4,4 +4,8 @@ export type RenderedProp = {
   rendered: string
 }
 
+export type HrefProp = {
+  href: string
+}
+
 export type Guid = RenderedProp
