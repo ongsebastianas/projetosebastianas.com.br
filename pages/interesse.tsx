@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, FormControl, FormErrorMessage, FormHelperText, FormLabel, Heading, HStack, Input, Progress, Radio, RadioGroup, TabPanel, TabPanels, Tabs, Text, useRadioGroup, VStack } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, FormControl, FormErrorMessage, FormHelperText, FormLabel, Heading, HStack, Input, Progress, Radio, RadioGroup, TabPanel, TabPanels, Tabs, Text, useRadioGroup, useToast, VStack } from "@chakra-ui/react";
 import { RadioButton } from "@components/elements";
 import { FormLayout } from "@components/layouts";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import { NextPageWithLayout } from "../types";
 type InteresseFormData = {
   fullName: string;
   email: string;
-  gender: number;
+  gender: string;
   income: number;
 }
 
@@ -165,9 +165,11 @@ const GenderIncomeStep = (props: FormStepComponentProps) => {
 }
 
 const Interesse: NextPageWithLayout = () => {
+  const [isSubmittingData, setIsSubmittingData] = useState(false);
   const [hasSubmittedData, setHasSubmittedData] = useState(false);
   const [formStep, setFormStep] = useState(0);
   const form = useForm<InteresseFormData>();
+  const toast = useToast();
 
   const formSteps = [{
     component: NameEmailStep,
@@ -193,9 +195,33 @@ const Interesse: NextPageWithLayout = () => {
   const handleFormError: SubmitErrorHandler<InteresseFormData> = (errors) =>
     navigateToFieldWithError(errors);
 
-  const handleSubmit: SubmitHandler<InteresseFormData> = (data) => {
-    console.log(data);
-    setHasSubmittedData(true);
+  const handleSubmit: SubmitHandler<InteresseFormData> = async (data) => {
+    const formData = new FormData()
+    formData.append("name", data.fullName)
+    formData.append("email", data.email)
+    formData.append("gender", data.gender.toLowerCase())
+
+    setIsSubmittingData(true)
+    const result = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/interested-person", {
+      method: "POST",
+      body: formData
+    })
+
+    setIsSubmittingData(false)
+    if (result.status >= 400) {
+      const resultJson = await result.json()
+
+      toast({
+        status: "error",
+        title: "Ocorreu um erro no registro.",
+        description: (resultJson["message"] as string),
+        isClosable: true
+      })
+
+      return
+    }
+
+    setHasSubmittedData(true)
   }
 
   return (
@@ -204,7 +230,7 @@ const Interesse: NextPageWithLayout = () => {
         hasSubmittedData
           ? (
             <Flex direction={"column"} gap={"2rem"} textAlign={"center"}>
-              <Heading>Fique atenta ao seu e-mail</Heading>
+              <Heading>Fique de olho no seu e-mail!</Heading>
 
               <Center height={"12rem"} position={"relative"}>
                 <Image
@@ -244,6 +270,7 @@ const Interesse: NextPageWithLayout = () => {
                 <Button hidden={formStep == 0} flex={"1"} onClick={handlePreviousStep} variant={"ghost"}>Anterior</Button>
                 <Button hidden={formStep + 1 == formSteps.length} flex={"1"} onClick={handleNextStep}>Continuar</Button>
                 <Button
+                  isLoading={isSubmittingData}
                   hidden={formStep + 1 != formSteps.length}
                   flex={"1"}
                   onClick={form.handleSubmit(handleSubmit, handleFormError)}
