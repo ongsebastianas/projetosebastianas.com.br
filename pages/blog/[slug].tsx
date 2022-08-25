@@ -1,5 +1,5 @@
-import { Box, chakra, Text } from "@chakra-ui/react";
-import { CardImage, PageTitle, Section, SectionTitle } from "@components/elements";
+import { Box, chakra, Text, Flex } from "@chakra-ui/react";
+import { PageTitle, Section, SectionTitle } from "@components/elements";
 import { Post } from "models/Post";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
@@ -14,14 +14,25 @@ const PostWrapper = chakra(Section, {
   }
 })
 
+const ImagePost = chakra("img", {
+  baseStyle: {
+    width: "30rem",
+    aspectRatio: "6/4",
+    borderRadius: "10px",
+    backgroundColor: "lightgray"
+  }
+});
+
 const PostPage: NextPage<{ post: Post }> = ({ post }) => {
   return (
     <Box>
       <PostWrapper>
         <SectionTitle>{ post.title.rendered }</SectionTitle>
-        
-        <CardImage src={post._embedded["wp:featuredmedia"][0].source_url} />
-        
+
+        <Flex justifyContent={"center"}>
+          <ImagePost src={post._embedded["wp:featuredmedia"][0].source_url}/>
+        </Flex>
+
         <Text fontSize={{ base: "1rem", lg: "1.25rem"}} align={"justify"} dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
       </PostWrapper>
     </Box>
@@ -40,7 +51,7 @@ export const getStaticProps: GetStaticProps<{ post: Post }, { slug: string }> = 
     }
 
   res = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/posts/" + postWithSlug.id + "/?_embed")
-  const post: Post = await res.json() 
+  const post: Post = await res.json()
 
   return {
     props: {
