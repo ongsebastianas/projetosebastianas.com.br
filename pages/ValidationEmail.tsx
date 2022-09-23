@@ -1,8 +1,8 @@
-import { chakra, Button, Center, Flex, FormControl, FormErrorMessage, TabPanel, TabPanels, Tabs, useToast } from "@chakra-ui/react";
+import { chakra, Button, Center, Flex, FormControl, FormErrorMessage, TabPanel, TabPanels, Tabs, useToast, Heading, Input, } from "@chakra-ui/react";
 import { FormLayout } from "@components/layouts";
 import Image from "next/image";
 import { useState } from "react";
-import { SubmitHandler, useForm, UseFormReturn } from "react-hook-form";
+import { SubmitErrorHandler, SubmitHandler, useController, useForm, UseFormReturn } from "react-hook-form";
 import { NextPageWithLayout } from "../types";
 
 type ValidationEmail = {
@@ -84,10 +84,9 @@ const ValidationEmailScreen = (props: ValidationEmailProps) => {
   )
 }
 
-const ValidationEmail: NextPageWithLayout = () => {
+const validationEmail: NextPageWithLayout = () => {
   const [isSubmittingData, setIsSubmittingData] = useState(false);
   const [hasSubmittedData, setHasSubmittedData] = useState(false);
-  const [formStep, setFormStep] = useState(0);
   const toast = useToast();
   const formValidation = useForm<ValidationEmail>();
 
@@ -101,11 +100,13 @@ const ValidationEmail: NextPageWithLayout = () => {
     formDataValidation.append("email", data.email)
     formDataValidation.append("token", data.token)
 
+    setIsSubmittingData(true)
     const result = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/email-verification", {
       method: "POST",
       body: formDataValidation
     })
 
+    setIsSubmittingData(false)
     if (result.status >= 400) {
       const resultJson = await result.json()
 
@@ -144,7 +145,7 @@ return (
     </Flex>)
         : (
           <>
-              <Tabs index={formStep}>
+              <Tabs>
                 <TabPanels>
                   {
                     validationSteps.map(({ component: StepComponent }, index) => (
@@ -159,7 +160,6 @@ return (
               <Flex gap={"1rem"} marginTop={{ base: "auto", md: "0" }}>
                 <Button
                   isLoading={isSubmittingData}
-                  hidden={formStep + 1 != validationSteps.length}
                   flex={"1"}
                   onClick={formValidation.handleSubmit(handleValidation)}
                 >
@@ -174,7 +174,7 @@ return (
 )
 }
 
-ValidationEmail.getLayout = (page) => {
+validationEmail.getLayout = (page) => {
   return (
     <FormLayout>
       {page}
@@ -182,4 +182,4 @@ ValidationEmail.getLayout = (page) => {
   )
 }
 
-export default ValidationEmail;
+export default validationEmail;
