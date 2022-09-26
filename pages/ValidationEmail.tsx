@@ -1,6 +1,6 @@
 import { chakra, Button, Center, Flex, FormControl, FormErrorMessage, TabPanel, TabPanels, Tabs, useToast, Heading, Input, } from "@chakra-ui/react";
-import { FormLayout } from "@components/layouts";
 import Image from "next/image";
+import { FormLayout } from "@components/layouts";
 import { useState } from "react";
 import { SubmitErrorHandler, SubmitHandler, useController, useForm, UseFormReturn } from "react-hook-form";
 import { NextPageWithLayout } from "../types";
@@ -84,11 +84,11 @@ const ValidationEmailScreen = (props: ValidationEmailProps) => {
   )
 }
 
-const validationEmail: NextPageWithLayout = () => {
+const ValidationEmail: NextPageWithLayout = () => {
   const [isSubmittingData, setIsSubmittingData] = useState(false);
   const [hasSubmittedData, setHasSubmittedData] = useState(false);
-  const toast = useToast();
   const formValidation = useForm<ValidationEmail>();
+  const toast = useToast();
 
   const validationSteps = [{
     component: ValidationEmailScreen,
@@ -120,9 +120,9 @@ const validationEmail: NextPageWithLayout = () => {
 
       return
 
+
     }
     setHasSubmittedData(true)
-    handleValidation
 }
 
 return (
@@ -174,7 +174,7 @@ return (
 )
 }
 
-validationEmail.getLayout = (page) => {
+ValidationEmail.getLayout = (page) => {
   return (
     <FormLayout>
       {page}
@@ -182,4 +182,4 @@ validationEmail.getLayout = (page) => {
   )
 }
 
-export default validationEmail;
+export default ValidationEmail;
