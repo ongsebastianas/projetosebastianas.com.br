@@ -58,6 +58,14 @@ const EventoCard = chakra(Card, {
   }
 });
 
+const ComingSoonCard = chakra(Card, {
+  baseStyle: {
+    display: "flex",
+    justifyContent: "center",
+    minWidth: { base: "auto", lg: "18rem" }
+  }
+});
+
 const ArtigoCard = chakra(Card, {
   baseStyle: {
     flex: { base: "0 0 100%", lg: "auto" },
@@ -179,7 +187,14 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
           <SectionTitle sansSerif variant={"outlined"} color={"white"}>Próximos eventos</SectionTitle>
         </Center>
 
-        <ScrollSnapWrapper display={"flex"} gap={"2rem"}>
+        <Flex direction={"column"} alignItems={"center"} >
+            <CardImage src={"/assets/images/ComingSoonIcon.svg"} objectFit={"contain"} padding={"1rem"} width={"25%"} background={"#FFCFB4"} />
+
+            <CardText color={"white"} paddingTop={"1rem"}>
+              <CardTitle textAlign={"center"} textTransform={"uppercase"}>Em Breve</CardTitle>
+            </CardText>
+        </Flex>
+        {/*<ScrollSnapWrapper display={"flex"} gap={"2rem"}>
           <EventoCard>
             <CardImage src={""} objectFit={"contain"} />
 
@@ -216,15 +231,6 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
             </CardText>
           </EventoCard>
 
-          <EventoCard>
-            <CardImage src={""} objectFit={"contain"} />
-
-            <CardText color={"white"}>
-              <CardDate>03 de junho de 2022</CardDate>
-              <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
-            </CardText>
-          </EventoCard>
-
 
           <EventoCard>
             <CardImage src={""} objectFit={"contain"} />
@@ -261,7 +267,7 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
               <CardTitle>Card de próximos eventos: título do evento vem aqui</CardTitle>
             </CardText>
           </EventoCard>
-        </ScrollSnapWrapper>
+        </ScrollSnapWrapper>*/}
       </EventosSection>
 
       <ArtigosSection>
@@ -313,7 +319,7 @@ export const getStaticProps: GetStaticProps<{ posts: Post[] }> = async () => {
 
     return res.json()
   }
-  
+
   const res = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/posts/?_embed")
   const posts: Post[] = await res.json()
 

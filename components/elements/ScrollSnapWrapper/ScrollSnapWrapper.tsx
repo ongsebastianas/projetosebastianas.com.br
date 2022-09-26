@@ -26,7 +26,7 @@ const ScrollSnapWrapper = ({ children, hideArrowsOnDesktop, ...props }: IScrollS
   const wrapperRef = useRef<HTMLDivElement>(null);
   const btnBackwardRef = useRef<HTMLButtonElement>(null);
   const btnForwardRef = useRef<HTMLButtonElement>(null);
-  
+
   const handleScrollBackward = () => {
     if (!wrapperRef.current) return;
 
@@ -47,18 +47,18 @@ const ScrollSnapWrapper = ({ children, hideArrowsOnDesktop, ...props }: IScrollS
 
   const recalculateScrollButtonsPositions = () => {
     if (
-      !btnForwardRef.current || 
+      !btnForwardRef.current ||
       !btnBackwardRef.current ||
       !wrapperRef.current
     ) return;
-    
+
     const wrapperData = wrapperRef.current.getBoundingClientRect();
     const fwrdData    = btnForwardRef.current.getBoundingClientRect();
-  
+
     const topPosition = wrapperRef.current.offsetTop + (wrapperData.height / 2);
-    const frwdLeftPosition = wrapperData.right - (fwrdData.width / 2);    
+    const frwdLeftPosition = wrapperData.right - (fwrdData.width / 2);
     const bkwdLeftPosition = wrapperData.left - (fwrdData.width / 2);
-  
+
     btnForwardRef.current.style.left = `${frwdLeftPosition}px`;
     btnForwardRef.current.style.top = `${topPosition}px`;
     btnBackwardRef.current.style.left = `${bkwdLeftPosition}px`;
