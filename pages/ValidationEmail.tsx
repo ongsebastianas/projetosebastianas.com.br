@@ -131,16 +131,27 @@ return (
       hasSubmittedData
         ? (
           <Flex direction={"column"} gap={"3rem"} height={"100%"}>
-      <Flex direction={"column"} gap={"2rem"} textAlign={"center"}>
-        <Heading>Email Verificado</Heading>
+      <Flex direction={"column"} gap={"1rem"} textAlign={"center"}>
+        <Heading fontSize={"2rem"}>E-mail verificado!</Heading>
 
-        <Center height={"12rem"} position={"relative"}>
+        <Flex paddingLeft={"5rem"}>
           <Image
-            layout={"fill"}
+            width={"100rem"}
+            height={"100rem"}
             alt={"Ilustração"}
-            src={"/assets/images/thinkingGirl.svg"}
+            src={"/assets/images/comfirmationArrow.svg"}
+          />
+        </Flex>
+
+        <Center height={"6rem"}>
+          <Image
+            height={"200rem"}
+            width={"200rem"}
+            alt={"Ilustração"}
+            src={"/assets/images/girl.svg"}
           />
         </Center>
+          <Button marginLeft={"6rem"} marginRight={"6rem"} onClick={() => {window.location.href = "https://projetosebastianas.com.br/"}}>Voltar para o Site</Button>
       </Flex>
     </Flex>)
         : (
