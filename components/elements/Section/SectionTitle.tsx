@@ -38,7 +38,7 @@ const SectionTitle = styled.h2<SectionTitleProps>`
       content: "";
       position: absolute;
       bottom: -20px;
-      
+
       ${({ titleSublinePosition = "center" }) => titleSublinePosition === "center" ? (css`
         // Centraliza o outline:
         left: 40%;
@@ -58,9 +58,8 @@ const SectionTitle = styled.h2<SectionTitleProps>`
     position: absolute !important;
     color: white;
     padding: 1rem;
-    margin-left: 2rem;
     font-size: 2rem !important;
-    
+
     &::before {
       content: "";
       border-radius: 18px;

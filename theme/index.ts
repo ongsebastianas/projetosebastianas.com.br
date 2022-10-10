@@ -6,6 +6,7 @@ import green from "./colors/green";
 import Button from "./components/Button";
 import FormLabel from "./components/FormLabel";
 import Heading from "./components/Heading";
+import FooterStyle from "./components/FooterStyle";
 import Input from "./components/Input";
 import Link from "./components/Link";
 import Progress from "./components/Progress";
@@ -15,7 +16,8 @@ const theme = extendTheme(
   {
     fonts: {
       heading: "Alegreya, serif",
-      body: "Alegreya Sans, sans-serif"
+      body: "Alegreya Sans, sans-serif",
+      FooterStyle: "Open Sans, sans-serif"
     },
     colors: {
       brand,
@@ -29,6 +31,7 @@ const theme = extendTheme(
       Progress,
       Radio,
       Heading,
+      FooterStyle,
       InputGroup: {
         fields: {
           borderRadius: "50px"

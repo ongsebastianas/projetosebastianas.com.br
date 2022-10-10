@@ -1,9 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
-import { MainHeader } from "../elements";
+import { MainHeader, MainFooter } from "../elements";
 
 const Main = styled.main`
-  display: flex;  
+  display: flex;
   flex-direction: column;
   position: relative;
 `;
@@ -20,6 +20,8 @@ const MainLayout = ({ children }: Props) => {
       <Main>
         { children }
       </Main>
+
+      <MainFooter />
     </Box>
   )
 }

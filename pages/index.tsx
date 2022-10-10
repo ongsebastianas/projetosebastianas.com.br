@@ -188,7 +188,7 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
         </Center>
 
         <Flex direction={"column"} alignItems={"center"} >
-            <CardImage src={"/assets/images/ComingSoonIcon.svg"} objectFit={"contain"} padding={"1rem"} width={"25%"} background={"#FFCFB4"} />
+            <CardImage src={"/assets/images/ComingSoonIcon.svg"} objectFit={"contain"} padding={"1rem"} width={["50%", "50%", "25%"]} background={"#FFCFB4"} />
 
             <CardText color={"white"} paddingTop={"1rem"}>
               <CardTitle textAlign={"center"} textTransform={"uppercase"}>Em Breve</CardTitle>
