@@ -29,6 +29,13 @@ const BlockText = chakra('p', {
   }
 });
 
+const LinkMedia = chakra ('a', {
+  baseStyle: {
+    textDecoration: 'none',
+
+  }
+})
+
 type MenuItem = {
   text: string;
   href: string;
@@ -80,13 +87,17 @@ const MainFooter = () => {
           <BlockTitle>SIGA NAS REDES SOCIAIS:</BlockTitle>
         <Flex marginTop={"0.5rem"}>
           <Flex marginRight={"0.5rem"}>
-            <Image width={"23px"} height={"23px"} alt={"Icone do Whatsapp"} src={InstagramIcon} />
+            <LinkMedia target={"_blank"} href={"https://www.instagram.com/projetosebastianas/"}><Image width={"23px"} height={"23px"} alt={"Icone do Whatsapp"} src={InstagramIcon} /></LinkMedia>
           </Flex>
           <Flex marginRight={"0.5rem"}>
-            <Image width={"23px"} height={"23px"} alt={"Icone do Whatsapp"} src={FacebookIcon} />
+            <LinkMedia target={"_blank"} href={"https://www.facebook.com/projetosebastianas"}>
+              <Image width={"23px"} height={"23px"} alt={"Icone do Whatsapp"} src={FacebookIcon} />
+            </LinkMedia>
           </Flex>
           <Flex marginRight={"0.5rem"}>
-            <Image width={"23px"} height={"23px"} alt={"Icone do Whatsapp"} src={LinkedinIcon} />
+            <LinkMedia target={"_blank"} href={"https://www.linkedin.com/company/projeto-sebastianas/"}>
+              <Image width={"23px"} height={"23px"} alt={"Icone do Whatsapp"} src={LinkedinIcon} />
+            </LinkMedia>
           </Flex>
         </Flex>
       </Flex>
