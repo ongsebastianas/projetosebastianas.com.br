@@ -295,7 +295,10 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
         </ScrollSnapWrapper>
 
         <ArtigosSectionFooter>
-          <ArtigosSectionAnnouncement styleProps={{ color: "brand.500", textTransform: "uppercase", letterSpacing: "0.15rem" }} href={"/blog"}>Ver mais artigos</ArtigosSectionAnnouncement>
+          <ArtigosSectionAnnouncement styleProps={{ color: "brand.500", textTransform: "uppercase", letterSpacing: "0.15rem" }} href={"/blog"} alignItems={"center"}>
+            Ver mais artigos
+            <svg viewBox="0 0 24 24" focusable="false" className="chakra-icon css-onkibi" aria-hidden="true"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+          </ArtigosSectionAnnouncement>
         </ArtigosSectionFooter>
       </ArtigosSection>
     </React.Fragment>
