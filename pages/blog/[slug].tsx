@@ -16,22 +16,22 @@ const PostWrapper = chakra(Section, {
 
 const ImagePost = chakra("img", {
   baseStyle: {
-    width: "30rem",
+    width: "100%",
     aspectRatio: "6/4",
     borderRadius: "10px",
-    backgroundColor: "lightgray"
+    backgroundColor: "lightgray",
   }
 });
 
 const PostPage: NextPage<{ post: Post }> = ({ post }) => {
   return (
     <Box>
-      <PostWrapper>
-        <SectionTitle>{ post.title.rendered }</SectionTitle>
-
-        <Flex justifyContent={"center"}>
-          <ImagePost src={post._embedded["wp:featuredmedia"][0].source_url}/>
+        <Flex justifyContent={"center"} margin={0} padding={0}>
+          <ImagePost borderRadius={"none"} src={post._embedded["wp:featuredmedia"][0].source_url}/>
         </Flex>
+      <PostWrapper>
+
+        <SectionTitle>{ post.title.rendered }</SectionTitle>
 
         <Text fontSize={{ base: "1rem", lg: "1.25rem"}} align={"justify"} dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
       </PostWrapper>
@@ -46,9 +46,9 @@ export const getStaticProps: GetStaticProps<{ post: Post }, { slug: string }> = 
   const posts: Post[] = await res.json()
   const postWithSlug = posts.find(post => post.slug == params?.slug)
   if (!postWithSlug)
-    return {
-      notFound: true
-    }
+  return {
+    notFound: true
+  }
 
   res = await fetch("https://projetosebastianas.com.br/wp-json/wp/v2/posts/" + postWithSlug.id + "/?_embed")
   const post: Post = await res.json()
